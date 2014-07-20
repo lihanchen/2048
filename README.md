@@ -1,4 +1,4 @@
 2048
 ====
 
-2048 game
+My 2048 game on Android
