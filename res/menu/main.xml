@@ -3,9 +3,7 @@
     tools:context="com.lhc.lhc2048.MainActivity" >
 
     <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:showAsAction="never"
-        android:title="@string/action_settings"/>
-
+        android:id="@+id/action_restart"
+        android:title="@string/restart" android:showAsAction="ifRoom"
+        android:icon="@drawable/restart"/>
 </menu>
