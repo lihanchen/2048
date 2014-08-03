@@ -14,8 +14,8 @@ import android.view.View;
 
 public class GameSystem {
 	private int data[][];
-	private TextView blocks[][];
-	private TextView labelScore;
+	TextView blocks[][];
+	TextView labelScore;
 	private boolean lose;
 	private int score,max,nums;
 	private String strScore;
@@ -30,22 +30,7 @@ public class GameSystem {
 		rand=new Random();
 		context=main;
 		blocks=new TextView[4][4];
-		blocks[0][0]=(TextView)main.findViewById(R.id.num11);
-		blocks[0][1]=(TextView)main.findViewById(R.id.num12);
-		blocks[0][2]=(TextView)main.findViewById(R.id.num13);
-		blocks[0][3]=(TextView)main.findViewById(R.id.num14);
-		blocks[1][0]=(TextView)main.findViewById(R.id.num21);
-		blocks[1][1]=(TextView)main.findViewById(R.id.num22);
-		blocks[1][2]=(TextView)main.findViewById(R.id.num23);
-		blocks[1][3]=(TextView)main.findViewById(R.id.num24);
-		blocks[2][0]=(TextView)main.findViewById(R.id.num31);
-		blocks[2][1]=(TextView)main.findViewById(R.id.num32);
-		blocks[2][2]=(TextView)main.findViewById(R.id.num33);
-		blocks[2][3]=(TextView)main.findViewById(R.id.num34);
-		blocks[3][0]=(TextView)main.findViewById(R.id.num41);
-		blocks[3][1]=(TextView)main.findViewById(R.id.num42);
-		blocks[3][2]=(TextView)main.findViewById(R.id.num43);
-		blocks[3][3]=(TextView)main.findViewById(R.id.num44);
+
 		labelScore=(TextView)main.findViewById(R.id.labelScore);
 		strScore=main.getString(R.string.score);
 		restart();
@@ -70,7 +55,7 @@ public class GameSystem {
 					blocks[i][j].setText("");
 				else
 					blocks[i][j].setText(Integer.toString(data[i][j]));
-		labelScore.setText(strScore+'\n'+score);
+		labelScore.setText(strScore+score);
 	}
 
 	public boolean up(){

@@ -15,6 +15,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.GridLayout;
@@ -29,25 +31,24 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
-		gs=new GameSystem(this);
 		Button butReset=(Button)findViewById(R.id.butReset);
 		butReset.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				AlertDialog alert=new AlertDialog.Builder(MainActivity.this).create();
-				alert.setIcon(R.drawable.info);
-				alert.setTitle(MainActivity.this.getString(R.string.restart));
-				alert.setMessage(MainActivity.this.getString(R.string.sureRestart));
-				alert.setButton(DialogInterface.BUTTON_NEGATIVE,MainActivity.this.getString(R.string.cancel),new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int which) {
-						
-					}
-				});
-				alert.setButton(DialogInterface.BUTTON_NEUTRAL,MainActivity.this.getString(R.string.ok),new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int which) {
-						MainActivity.this.gs.restart();
-					}
-				});
-				alert.show();
+				GridLayout gw=(GridLayout)findViewById(R.id.gw);
+				Button b=new Button(MainActivity.this);
+				b.setText("qwe");
+				LayoutParams lp=new LayoutParams(100, 100);
+				gw.addView(b,lp);
+			}
+		});
+		
+		/*//gs=new GameSystem(this);
+		Button butReset=(Button)findViewById(R.id.butReset);
+		butReset.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				Log.e("width",String.valueOf(gs.blocks[0][0].getWidth()));
+				Animation ani=AnimationUtils.loadAnimation(MainActivity.this, R.anim.moveleft);
+				//gs.blocks[1][1].startAnimation(ani);
 			}
 		});
 		butReset.setClickable(true);
@@ -70,36 +71,32 @@ public class MainActivity extends Activity {
 				return gd.onTouchEvent(event);
 			}
 		});
+		Log.e("width",""+((GridLayout)findViewById(R.id.gl)).getWidth());*/
 	}
+	
 
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
 		if (id == R.id.action_restart) {
 			AlertDialog alert=new AlertDialog.Builder(this).create();
 			alert.setIcon(R.drawable.info);
 			alert.setTitle(getString(R.string.restart));
 			alert.setMessage(this.getString(R.string.sureRestart));
-			alert.setButton(DialogInterface.BUTTON_NEGATIVE,getString(R.string.cancel),new DialogInterface.OnClickListener() {
-				public void onClick(DialogInterface dialog, int which) {
-					
-				}
-			});
-			alert.setButton(DialogInterface.BUTTON_NEUTRAL,getString(R.string.ok),new DialogInterface.OnClickListener() {
+			alert.setButton(AlertDialog.BUTTON_POSITIVE,getString(R.string.ok),new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface dialog, int which) {
 					gs.restart();
 				}
+			});
+			alert.setButton(AlertDialog.BUTTON_NEGATIVE,getString(R.string.cancel),new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog, int which) {}
 			});
 			alert.show();
 		}
