@@ -69,12 +69,11 @@
         android:layout_margin="5dp"
         android:layout_weight="0"
         android:background="@color/deepGray"
-        android:clickable="false"
+        android:clickable="true"
         android:columnCount="4"
-        android:longClickable="false"
+        android:longClickable="true"
         android:padding="4dp"
         android:rowCount="4" >
-
 
     </com.lhc.lhc2048.GameWidget>
 

@@ -14,25 +14,24 @@ import android.view.View;
 
 public class GameSystem {
 	private int data[][];
-	TextView blocks[][];
-	TextView labelScore;
+	private GameWidget gameWidget;
+	private TextView labelScore;
 	private boolean lose;
 	private int score,max,nums;
 	private String strScore;
 	private Random rand;
-	private Context context;
+	private Activity context;
 	
 	public boolean isLose() {
 		return lose;
 	}
 
-	public GameSystem(Activity main){
+	public GameSystem(){
 		rand=new Random();
-		context=main;
-		blocks=new TextView[4][4];
-
-		labelScore=(TextView)main.findViewById(R.id.labelScore);
-		strScore=main.getString(R.string.score);
+		context=MainActivity.instance;
+		gameWidget=(GameWidget)context.findViewById(R.id.gw);
+		labelScore=(TextView)context.findViewById(R.id.labelScore);
+		strScore=context.getString(R.string.score);
 		restart();
 	}
 	
@@ -49,12 +48,7 @@ public class GameSystem {
 	}
 	
 	public void display(){
-		for(int i=0;i<4;i++)
-			for(int j=0;j<4;j++)
-				if (data[i][j]==0) 
-					blocks[i][j].setText("");
-				else
-					blocks[i][j].setText(Integer.toString(data[i][j]));
+		gameWidget.display(data);
 		labelScore.setText(strScore+score);
 	}
 
@@ -63,7 +57,7 @@ public class GameSystem {
 		boolean changed=false;
 		int current,j;
 		for(int i=0;i<4;i++){
-			//Êý×ÖÉÏÌá
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			for(current=0;current<3;current++){
 				for(j=current;j<4;j++) if(data[j][i]!=0) break;
 				if((j!=current)&&(j!=4)){
@@ -72,7 +66,7 @@ public class GameSystem {
 					data[j][i]=0;
 				}
 			}
-			//Êý×ÖºÏ²¢
+			//ï¿½ï¿½ï¿½ÖºÏ²ï¿½
 			for(current=0;current<3;current++){
 				if(data[current][i]==data[current+1][i]){
 					changed=true;
@@ -100,7 +94,7 @@ public class GameSystem {
 		boolean changed=false;
 		int current,j;
 		for(int i=3;i>=0;i--){
-			//Êý×ÖÏÂÌá
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			for(current=3;current>0;current--){
 				for(j=current;j>=0;j--) if(data[j][i]!=0) break;
 				if((j!=current)&&(j!=-1)){
@@ -109,7 +103,7 @@ public class GameSystem {
 					data[j][i]=0;
 				}
 			}
-			//Êý×ÖºÏ²¢
+			//ï¿½ï¿½ï¿½ÖºÏ²ï¿½
 			for(current=3;current>0;current--){
 				if(data[current][i]==data[current-1][i]){
 					changed=true;
@@ -137,7 +131,7 @@ public class GameSystem {
 		boolean changed=false;
 		int current,j;
 		for(int i=0;i<4;i++){
-			//Êý×Ö×óÌá
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			for(current=0;current<3;current++){
 				for(j=current;j<4;j++) if(data[i][j]!=0) break;
 				if((j!=current)&&(j!=4)){
@@ -146,7 +140,7 @@ public class GameSystem {
 					data[i][j]=0;
 				}
 			}
-			//Êý×ÖºÏ²¢
+			//ï¿½ï¿½ï¿½ÖºÏ²ï¿½
 			for(current=0;current<3;current++){
 				if(data[i][current]==data[i][current+1]){
 					changed=true;
@@ -170,11 +164,12 @@ public class GameSystem {
 	}
 
 	public boolean right(){
+		Log.e("gs","right");
 		if(lose) return false;
 		boolean changed=false;
 		int current,j;
 		for(int i=3;i>=0;i--){
-			//Êý×ÖÓÒÌá
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			for(current=3;current>0;current--){
 				for(j=current;j>=0;j--) if(data[i][j]!=0) break;
 				if((j!=current)&&(j!=-1)){
@@ -184,7 +179,7 @@ public class GameSystem {
 					data[i][j]=0;
 				}
 			}
-			//Êý×ÖºÏ²¢
+			//ï¿½ï¿½ï¿½ÖºÏ²ï¿½
 			for(current=3;current>0;current--){
 				if(data[i][current]==data[i][current-1]){
 					changed=true;

@@ -3,6 +3,7 @@ package com.lhc.lhc2048;
 import android.app.ActionBar.LayoutParams;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.gesture.GestureOverlayView;
 import android.os.Bundle;
@@ -25,33 +26,22 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
+	GameWidget gw;
 	GameSystem gs;
 	GestureDetector gd;
+	static MainActivity instance;;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
-		Button butReset=(Button)findViewById(R.id.butReset);
+		instance=this;
+		/*Button butReset=(Button)findViewById(R.id.butReset);
 		butReset.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				GridLayout gw=(GridLayout)findViewById(R.id.gw);
-				Button b=new Button(MainActivity.this);
-				b.setText("qwe");
-				LayoutParams lp=new LayoutParams(100, 100);
-				gw.addView(b,lp);
 			}
 		});
 		
-		/*//gs=new GameSystem(this);
-		Button butReset=(Button)findViewById(R.id.butReset);
-		butReset.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) {
-				Log.e("width",String.valueOf(gs.blocks[0][0].getWidth()));
-				Animation ani=AnimationUtils.loadAnimation(MainActivity.this, R.anim.moveleft);
-				//gs.blocks[1][1].startAnimation(ani);
-			}
-		});
-		butReset.setClickable(true);
+		gw=(GameWidget)findViewById(R.id.gw);
 		gd=new GestureDetector(MainActivity.this,new GestureDetector.SimpleOnGestureListener(){
 			public boolean onFling(MotionEvent e1, MotionEvent e2,float velocityX, float velocityY) {
 				float x1=e1.getX();
@@ -66,12 +56,11 @@ public class MainActivity extends Activity {
 				return super.onFling(e1, e2, velocityX, velocityY);
 			}
 		});
-		((FrameLayout)findViewById(R.id.matrix)).setOnTouchListener(new OnTouchListener() {
+		gw.setOnTouchListener(new OnTouchListener() {
 			public boolean onTouch(View v, MotionEvent event) {
 				return gd.onTouchEvent(event);
 			}
-		});
-		Log.e("width",""+((GridLayout)findViewById(R.id.gl)).getWidth());*/
+		});*/
 	}
 	
 
