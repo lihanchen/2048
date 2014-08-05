@@ -32,8 +32,6 @@ public class GameWidget extends GridLayout{
 	
 	public void initialize(){
 		blocks=new TextView[4][4];
-		LayoutParams lp=new LayoutParams();
-		lp.setMargins(10,10,10,10);
 		for(int i=0;i<4;i++)
 			for(int j=0;j<4;j++){
 				blocks[i][j]=new TextView(context);
@@ -41,8 +39,12 @@ public class GameWidget extends GridLayout{
 				blocks[i][j].setBackgroundColor(getResources().getColor(R.color.background));
 				blocks[i][j].setTextSize(TypedValue.COMPLEX_UNIT_SP,20);
 				blocks[i][j].setGravity(Gravity.CENTER);
+				LayoutParams lp=new LayoutParams();
+				lp.setMargins(1,1,1,1);
 				blocks[i][j].setLayoutParams(lp);
-				this.addView(blocks[i][j],blockLength,blockLength);
+				blocks[i][j].setWidth(blockLength);
+				blocks[i][j].setHeight(blockLength);
+				this.addView(blocks[i][j]);
 			}
 	}
 	
