@@ -3,6 +3,8 @@ package com.lhc.lhc2048;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Paint.Style;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.util.TypedValue;
@@ -13,29 +15,30 @@ import android.widget.TextView;
 public class GameWidget extends GridLayout{
 	int side,blockLength;
 	TextView blocks[][];
+	Paint paintBlock;
 	Context context;
-	boolean firstTimeOnMeasure;
-	
+
 	public GameWidget(Context context){
 		super(context);
 		this.context=context;
-		firstTimeOnMeasure=true;
+		initialize();
 	}
-	
 	public GameWidget(Context context,AttributeSet attrs) {
 		super(context,attrs);
 		this.context=context;
-		firstTimeOnMeasure=true;
+		initialize();
 	}
-	
 	public GameWidget(Context context,AttributeSet attrs,int defStyleAttr) {
 		super(context,attrs, defStyleAttr);
 		this.context=context;
-		firstTimeOnMeasure=true;
+		initialize();
 	}
-	
+
 	public void initialize(){
 		Log.e("ini","asd");
+		paintBlock=new Paint();
+		paintBlock.setStyle(Style.FILL);
+		paintBlock.setColor(getResources().getColor(R.color.background));
 		blocks=new TextView[4][4];
 		for(int i=0;i<4;i++)
 			for(int j=0;j<4;j++){
@@ -51,32 +54,43 @@ public class GameWidget extends GridLayout{
 				blocks[i][j].setHeight(blockLength);
 				this.addView(blocks[i][j]);
 			}
-		//MainActivity.instance.gs=new GameSystem();
 	}
-	
+
 	public void display(int data[][]){
 		Log.e("data",data.toString());
-		blocks[0][0].setText("asd");
 		for(int i=0;i<4;i++)
 			for(int j=0;j<4;j++)
-				if (data[i][j]==0) 
+				if (data[i][j]==0) {
+					blocks[i][j].setVisibility(INVISIBLE);
 					blocks[i][j].setText("");
-				else
+				}else{
 					blocks[i][j].setText(Integer.toString(data[i][j]));
+					blocks[i][j].setVisibility(VISIBLE);
+				}
 	}
 
 	@Override
 	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 		super.onMeasure(widthMeasureSpec,heightMeasureSpec);
-		if (firstTimeOnMeasure){
-			firstTimeOnMeasure=false;
-		}else{
-			side=Math.min(MeasureSpec.getSize(widthMeasureSpec),MeasureSpec.getSize(heightMeasureSpec));
-			blockLength=(side-10)/4;
-			side=blockLength*4+10;
-			setMeasuredDimension(side,side);
-			initialize();
-		}
+		side=Math.min(MeasureSpec.getSize(widthMeasureSpec),MeasureSpec.getSize(heightMeasureSpec));
+		blockLength=(side-14)/4;
+		side=blockLength*4+14;
+		for(int i=0;i<4;i++)
+			for(int j=0;j<4;j++){
+				blocks[i][j].setWidth(blockLength);
+				blocks[i][j].setHeight(blockLength);
+			}
+		Log.e("side,blockLen",""+side+blockLength);
+		setMeasuredDimension(side,side);
 	}
 	
+	@Override
+	protected void onDraw(Canvas canvas) {
+		// TODO Auto-generated method stub
+		super.onDraw(canvas);
+		for(int i=0;i<4;i++)
+			for(int j=0;j<4;j++)
+				canvas.drawRect(5+(blockLength+2)*i,5+(blockLength+2)*j,7+(blockLength+2)*i+blockLength-2,7+(blockLength+2)*j+blockLength-2,paintBlock);
+	}
+
 }

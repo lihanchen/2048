@@ -40,7 +40,7 @@
             android:id="@+id/labelHighestScore"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical|right"
+            android:layout_gravity="right"
             android:background="@color/label"
             android:gravity="center"
             android:lines="2"
@@ -58,7 +58,7 @@
             android:layout_gravity="center_horizontal"
             android:clickable="false"
             android:text="reset"
-            android:visibility="visible" />
+            android:visibility="invisible" />
 
     </FrameLayout>
 
@@ -66,13 +66,15 @@
         android:id="@+id/gw"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
         android:layout_margin="5dp"
         android:layout_weight="0"
         android:background="@color/deepGray"
         android:clickable="true"
         android:columnCount="4"
         android:longClickable="true"
-        android:padding="4dp"
+        android:orientation="vertical"
+        android:padding="4px"
         android:rowCount="4" >
 
     </com.lhc.lhc2048.GameWidget>

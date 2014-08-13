@@ -35,24 +35,29 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 		instance=this;
-		/*Button butReset=(Button)findViewById(R.id.butReset);
+		
+		Button butReset=(Button)findViewById(R.id.butReset);
 		butReset.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
+				gw.blocks[0][3].startAnimation(AnimationUtils.loadAnimation(MainActivity.this, R.anim.moveleft));
 			}
 		});
 		
 		gw=(GameWidget)findViewById(R.id.gw);
+		gs=new GameSystem();
+		
 		gd=new GestureDetector(MainActivity.this,new GestureDetector.SimpleOnGestureListener(){
 			public boolean onFling(MotionEvent e1, MotionEvent e2,float velocityX, float velocityY) {
 				float x1=e1.getX();
 				float x2=e2.getX();
 				float y1=e1.getY();
 				float y2=e2.getY();
-				if ((x2-x1>75)&&(Math.abs(y1-y2)<(x2-x1)/2.5)) gs.right();
-				else if ((x1-x2>75)&&(Math.abs(y1-y2)<(x1-x2)/2.5)) gs.left();
-				else if ((y2-y1>75)&&(Math.abs(x1-x2)<(y2-y1)/2.5)) gs.down();
-				else if ((y1-y2>75)&&(Math.abs(x1-x2)<(y1-y2)/2.5)) gs.up();
-				else Toast.makeText(MainActivity.this, getString(R.string.unrecognizableGesture), Toast.LENGTH_SHORT).show();
+				gw.setLongClickable(false);
+				if ((x2-x1>75)&&(Math.abs(y1-y2)<(x2-x1)/2.5)) gs.move(false,'r');
+				else if ((x1-x2>75)&&(Math.abs(y1-y2)<(x1-x2)/2.5)) gs.move(false,'l');
+				else if ((y2-y1>75)&&(Math.abs(x1-x2)<(y2-y1)/2.5)) gs.move(false,'d');
+				else if ((y1-y2>75)&&(Math.abs(x1-x2)<(y1-y2)/2.5)) gs.move(false,'u');
+				else gw.setLongClickable(true);
 				return super.onFling(e1, e2, velocityX, velocityY);
 			}
 		});
@@ -60,7 +65,7 @@ public class MainActivity extends Activity {
 			public boolean onTouch(View v, MotionEvent event) {
 				return gd.onTouchEvent(event);
 			}
-		});*/
+		});
 	}
 	
 

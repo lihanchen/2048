@@ -5,10 +5,8 @@
     <string name="restart">重新开始</string>
     <string name="score">得分\n</string>
     <string name="highestScore">最高分\n</string>
-	<string name="unrecognizableGesture">无法识别的手势，请往上下左右滑动</string>
 	<string name="gameOver">游戏结束</string>
 	<string name="yourScore">您的得分</string>
-	<string name="maxNum">拼出的最大数</string>
 	<string name="ok">确定</string>
 	<string name="sureRestart">确定要重新开始吗？</string>
 	<string name="cancel">取消</string>
