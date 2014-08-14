@@ -18,11 +18,11 @@ import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 
 public class GameSystem {
-	private int data[][];
+	public int data[][];
 	private GameWidget gameWidget;
 	private TextView labelScore;
-	private boolean lose;
-	private int score;
+	public boolean lose;
+	public int score;
 	private String strScore;
 	private Random rand;
 	private Activity context;
@@ -54,6 +54,13 @@ public class GameSystem {
 			}
 			
 		};
+	}
+	
+	public GameSystem(int data[][],int score){
+		this();
+		this.data=data;
+		this.score=score;
+		display();
 	}
 	
 	public void restart(){
@@ -177,7 +184,7 @@ public class GameSystem {
 			break;
 		}
 		
-		if (changed)
+		if (changed){
 			if (testOnly){
 				data=dataBackup;
 			}else{
@@ -194,10 +201,17 @@ public class GameSystem {
 						handler.sendMessage(msg);
 					}
 				}.start();
+				afterTurn();
 			}
-		else
+		}else
 			MainActivity.instance.gw.setLongClickable(true);
 		return changed;
+	}
+
+	private void afterTurn() {
+		//check lose
+		if(!(move(true,'u')||move(true,'d')||move(true,'l')||move(true,'r'))) lose();
+		
 	}
 
 	public void moveAnimation(int fromX,int fromY,int toX,int toY){
@@ -230,8 +244,6 @@ public class GameSystem {
 			data[x][y]=4;
 			score+=4;
 		}
-		//check lose
-		if(!(move(true,'u')||move(true,'d')||move(true,'l')||move(true,'r'))) lose();
 	}
 	
 	private void lose(){
