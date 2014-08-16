@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.lhc.lhc2048"
     android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionName="2.0 final" >
 
     <uses-sdk
         android:minSdkVersion="14"
@@ -15,8 +15,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
-            android:label="LHC 2048" 
-            android:screenOrientation="portrait">
+            android:label="LHC 2048" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

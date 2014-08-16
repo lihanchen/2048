@@ -1,0 +1,81 @@
+<GridLayout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/com.lhc.lhc2048"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="fill"
+    android:background="@color/background"
+    android:columnCount="2"
+    android:gravity="center_horizontal"
+    android:rowCount="1"
+    tools:context="com.lhc.lhc2048.MainActivity" >
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center"
+        android:layout_margin="30dp"
+        android:layout_marginLeft="50dp"
+        android:layout_weight="0"
+        android:columnCount="1"
+        android:rowCount="3" >
+
+        <TextView
+            android:id="@+id/labelScore"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:background="@color/label"
+            android:gravity="center"
+            android:lines="2"
+            android:maxLines="2"
+            android:minHeight="60dp"
+            android:minLines="2"
+            android:padding="2dp"
+            android:text="@string/score"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <TextView
+            android:id="@+id/labelHighestScore"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@color/label"
+            android:gravity="center"
+            android:lines="2"
+            android:maxLines="2"
+            android:minHeight="60dp"
+            android:minLines="2"
+            android:padding="2dp"
+            android:text="@string/highestScore"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <Button
+            android:id="@+id/butReset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:clickable="false"
+            android:text="reset"
+            android:visibility="invisible" />
+
+    </FrameLayout>
+
+    <com.lhc.lhc2048.GameWidget
+        android:id="@+id/gw"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="10dp"
+        android:layout_weight="0"
+        android:background="@color/deepGray"
+        android:clickable="true"
+        android:columnCount="4"
+        android:longClickable="true"
+        android:orientation="vertical"
+        android:padding="4px"
+        android:rowCount="4" >
+
+    </com.lhc.lhc2048.GameWidget>
+
+</GridLayout>

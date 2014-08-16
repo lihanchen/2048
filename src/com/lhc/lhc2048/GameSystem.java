@@ -248,6 +248,12 @@ public class GameSystem {
 	
 	private void lose(){
 		lose=true;
+		if (score>MainActivity.instance.maxScore){
+			MainActivity.instance.maxScore=score;
+			((TextView)context.findViewById(R.id.labelHighestScore)).setText(context.getString(R.string.highestScore)+score);
+			MainActivity.instance.onStop();
+		}
+		
 		AlertDialog alert=new AlertDialog.Builder(context).create();
 		alert.setIcon(R.drawable.info);
 		alert.setTitle(context.getString(R.string.gameOver));
