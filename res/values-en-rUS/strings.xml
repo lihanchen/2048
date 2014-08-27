@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">LHC2048</string>
+    <string name="restart">restart</string>
+    <string name="score">score\n</string>
+    <string name="highestScore">maxscore\n</string>
+	<string name="gameOver">game over</string>
+	<string name="yourScore">your score</string>
+	<string name="ok">OK</string>
+	<string name="sureRestart">Are you sure to restart?</string>
+	<string name="cancel">cancel</string>
+	
+</resources>
